@@ -394,17 +394,105 @@ document.addEventListener('DOMContentLoaded', () => {
     DOM.bouquetToWishBtn.addEventListener('click', (e) => {
         const rect = DOM.bouquetToWishBtn.getBoundingClientRect();
         createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2);
-        switchSection('wish');
+        switchSection('wish', () => {
+            startCakeAssemblyAnimation();
+        });
     });
 
     // --------------------------------------------------------------------------
-    // 6. Interactive Candle & Wish Engine
+    // 6. Cinematic Cake Assembly & Wish Engine
     // --------------------------------------------------------------------------
+    function addCakeStep(delay, callback) {
+        const id = setTimeout(callback, delay);
+        state.cakeTimerIds = state.cakeTimerIds || [];
+        state.cakeTimerIds.push(id);
+    }
+
+    function resetCakeScene() {
+        if (state.cakeTimerIds) {
+            state.cakeTimerIds.forEach(id => clearTimeout(id));
+            state.cakeTimerIds = [];
+        }
+        state.candleBlown = false;
+
+        const cake = DOM.cake || document.getElementById('cake');
+        if (cake) {
+            cake.className = 'cake';
+        }
+        if (DOM.candle) {
+            DOM.candle.classList.remove('extinguished');
+        }
+        if (DOM.wishHint) {
+            DOM.wishHint.classList.remove('show-hint');
+        }
+        const yaySticker = document.getElementById('cinStickerYay');
+        if (yaySticker) {
+            yaySticker.classList.remove('cin-sticker-visible');
+        }
+    }
+
+    function startCakeAssemblyAnimation() {
+        resetCakeScene();
+        const cake = DOM.cake || document.getElementById('cake');
+        if (!cake) return;
+
+        // Step 1: Pedestal plate & stand rise up (0.3s)
+        addCakeStep(300, () => {
+            cake.classList.add('anim-cake-stand');
+        });
+
+        // Step 2: Bottom tier rises & settles with subtle sprinkles (1.0s)
+        addCakeStep(1000, () => {
+            cake.classList.add('anim-cake-layer-bottom');
+            createSparkleBurst(window.innerWidth / 2, window.innerHeight * 0.58);
+        });
+
+        // Step 3: Middle tier & cream drop into place (1.8s)
+        addCakeStep(1800, () => {
+            cake.classList.add('anim-cake-layer-middle');
+            createSparkleBurst(window.innerWidth / 2, window.innerHeight * 0.50);
+        });
+
+        // Step 4: Top tier & Cinnamoroll topper ears settle (2.6s)
+        addCakeStep(2600, () => {
+            cake.classList.add('anim-cake-layer-top');
+            createSparkleBurst(window.innerWidth / 2, window.innerHeight * 0.42);
+        });
+
+        // Step 5: Golden centerpiece candle rises up from cake (3.5s)
+        addCakeStep(3500, () => {
+            cake.classList.add('anim-cake-candles');
+        });
+
+        // Step 6: Flame ignites with warm flickering glow (4.2s)
+        addCakeStep(4200, () => {
+            cake.classList.add('anim-cake-flames');
+        });
+
+        // Step 7: Sparkle celebration ring bursts around cake (4.9s)
+        addCakeStep(4900, () => {
+            cake.classList.add('anim-cake-sparkles');
+            createSparkleBurst(window.innerWidth / 2, window.innerHeight * 0.45);
+        });
+
+        // Step 8: Settles into gentle idle breathing motion & reveals wish hint (5.6s)
+        addCakeStep(5600, () => {
+            cake.classList.add('anim-cake-completed');
+            if (DOM.wishHint) {
+                DOM.wishHint.classList.add('show-hint');
+            }
+        });
+    }
+
     function extinguishCandle() {
         if (state.candleBlown) return;
         state.candleBlown = true;
 
         DOM.candle.classList.add('extinguished');
+        const cake = DOM.cake || document.getElementById('cake');
+        if (cake) {
+            cake.classList.add('extinguished');
+        }
         createSmokeParticles();
         createSparkleBurst(window.innerWidth / 2, window.innerHeight * 0.38);
 
@@ -425,22 +513,55 @@ document.addEventListener('DOMContentLoaded', () => {
                     DOM.endingDialog.showModal();
                 }, 1400);
             });
-        }, 850);
+        }, 1600);
     }
 
     function createSmokeParticles() {
         DOM.smokeParticles.innerHTML = '';
+        // Wispy smoke circles
         for (let i = 0; i < 15; i++) {
             const particle = document.createElement('div');
             particle.className = 'smoke-particle';
             particle.style.setProperty('--rand-x', Math.random());
-            particle.style.animationDelay = `${i * 0.1}s`;
+            particle.style.animationDelay = `${i * 0.08}s`;
             DOM.smokeParticles.appendChild(particle);
+        }
+        // Floating wish hearts rising with smoke
+        const emojis = ['💖', '✨', '💕', '⭐', '🌸'];
+        for (let i = 0; i < 6; i++) {
+            const heart = document.createElement('span');
+            heart.className = 'smoke-heart';
+            heart.textContent = emojis[i % emojis.length];
+            heart.style.setProperty('--rx', Math.random());
+            heart.style.setProperty('--rot', `${(Math.random() - 0.5) * 40}deg`);
+            heart.style.animationDelay = `${i * 0.15}s`;
+            DOM.smokeParticles.appendChild(heart);
         }
     }
 
     DOM.candle.addEventListener('click', extinguishCandle);
     DOM.flame.addEventListener('click', extinguishCandle);
+
+    // Interactive Letter Seal Tap
+    const letterSeal = document.getElementById('letterSeal');
+    if (letterSeal) {
+        letterSeal.addEventListener('click', (e) => {
+            const rect = letterSeal.getBoundingClientRect();
+            createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2);
+        });
+    }
+
+    // Interactive Photo Tap Sparkles
+    [DOM.photoCard1, DOM.photoCard2, DOM.photoCard3].forEach(card => {
+        if (card) {
+            card.addEventListener('click', (e) => {
+                // If not clicking the next button directly, create sparkle burst at click point
+                if (e.target.tagName !== 'BUTTON') {
+                    createSparkleBurst(e.clientX, e.clientY);
+                }
+            });
+        }
+    });
 
     // --------------------------------------------------------------------------
     // 7. Ambient Pixel Canvas Stars

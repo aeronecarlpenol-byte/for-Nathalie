@@ -136,8 +136,28 @@
 
             <!-- 3. BIRTHDAY MESSAGE SECTION -->
             <section id="letter" class="section-container" aria-labelledby="letter-title" style="display: none;">
+                <!-- Ambient Floating Letter Sparkles & Hearts -->
+                <div class="letter-ambient-fx" aria-hidden="true">
+                    <span class="lfx lfx1">💌</span>
+                    <span class="lfx lfx2">✨</span>
+                    <span class="lfx lfx3">🌸</span>
+                    <span class="lfx lfx4">💕</span>
+                    <span class="lfx lfx5">☁️</span>
+                    <span class="lfx lfx6">✨</span>
+                    <span class="lfx lfx7">🎀</span>
+                    <span class="lfx lfx8">💖</span>
+                </div>
+
                 <article class="letter-card" tabindex="-1">
+                    <div class="card-glow-aura" aria-hidden="true"></div>
                     <div class="card-ribbon">🎀</div>
+                    
+                    <!-- Cute Interactive Postal Stamp Seal -->
+                    <div class="letter-stamp-seal" id="letterSeal" role="button" tabindex="0" aria-label="Tap for magic sparkles" title="Tap for magic ✨">
+                        <span class="stamp-seal-icon">💌</span>
+                        <span class="stamp-seal-text">CIRCUIT</span>
+                        <span class="stamp-seal-sparkle">✨</span>
+                    </div>
                     
                     
                     <!-- Cinnamoroll Letter Companion (Peeking from bottom corner) -->
@@ -199,13 +219,27 @@
                     <h2 id="photos-title">One more thing…</h2>
                 </header>
 
+                <!-- Ambient Floating Photo Charms -->
+                <div class="photo-ambient-charms" aria-hidden="true">
+                    <span class="pfx pfx1">✨</span>
+                    <span class="pfx pfx2">💖</span>
+                    <span class="pfx pfx3">🌸</span>
+                    <span class="pfx pfx4">⭐</span>
+                    <span class="pfx pfx5">💕</span>
+                    <span class="pfx pfx6">✨</span>
+                    <span class="pfx pfx7">🎀</span>
+                </div>
+
                 <div class="single-photo-stage">
                     <!-- Photo 1 -->
                     <figure id="photoCard1" class="photo-card active-card">
+                        <div class="washi-tape washi-tape-tl" aria-hidden="true"></div>
+                        <div class="washi-tape washi-tape-tr" aria-hidden="true"></div>
                         <div class="img-wrapper">
+                            <div class="photo-flash-sweep" aria-hidden="true"></div>
                             <img src="assets/images/photo1.jpg" loading="eager" alt="You looking pretty">
                             <div class="img-overlay-heart">💖</div>
-                            </div>
+                        </div>
                         <figcaption class="photo-caption sticker-caption sticker-pos-1">
                             <span class="sticker-accent">🎀</span>
                             <span class="sticker-text">“Lorem ipsum dolor sit amet”</span>
@@ -218,10 +252,13 @@
 
                     <!-- Photo 2 -->
                     <figure id="photoCard2" class="photo-card" style="display: none;">
+                        <div class="washi-tape washi-tape-tl" aria-hidden="true"></div>
+                        <div class="washi-tape washi-tape-tr" aria-hidden="true"></div>
                         <div class="img-wrapper">
+                            <div class="photo-flash-sweep" aria-hidden="true"></div>
                             <img src="assets/images/photo2.jpg" loading="lazy" alt="Your beautiful smile">
                             <div class="img-overlay-heart">💗</div>
-                            </div>
+                        </div>
                         <figcaption class="photo-caption sticker-caption sticker-pos-2">
                             <span class="sticker-accent">🌸</span>
                             <span class="sticker-text">“Lorem ipsum dolor sit amet”</span>
@@ -234,10 +271,13 @@
 
                     <!-- Photo 3 -->
                     <figure id="photoCard3" class="photo-card" style="display: none;">
+                        <div class="washi-tape washi-tape-tl" aria-hidden="true"></div>
+                        <div class="washi-tape washi-tape-tr" aria-hidden="true"></div>
                         <div class="img-wrapper">
+                            <div class="photo-flash-sweep" aria-hidden="true"></div>
                             <img src="assets/images/photo3.jpg" loading="lazy" alt="Really pretty moment">
                             <div class="img-overlay-heart">✨</div>
-                            </div>
+                        </div>
                         <figcaption class="photo-caption sticker-caption sticker-pos-3">
                             <span class="sticker-accent">⭐</span>
                             <span class="sticker-text">“Lorem ipsum dolor sit amet”</span>
@@ -449,10 +489,29 @@
 
                                 <div class="cake-container">
                     <div class="cake-glow-bg"></div>
+                    <div class="candle-warm-aura" aria-hidden="true"></div>
+                    
+                    <!-- Floating Birthday Fairy Dust & Sparkles -->
+                    <div class="cake-fairies-layer" aria-hidden="true">
+                        <span class="cf cf1">✨</span>
+                        <span class="cf cf2">💖</span>
+                        <span class="cf cf3">🌸</span>
+                        <span class="cf cf4">✨</span>
+                        <span class="cf cf5">⭐</span>
+                        <span class="cf cf6">💕</span>
+                        <span class="cf cf7">🍓</span>
+                        <span class="cf cf8">💫</span>
+                    </div>
+
+                    <!-- Birthday Cake Cinnamoroll Companion (sitting with presents) -->
+                    <div class="cin-sticker cin-sticker-bday-cake" aria-hidden="true">
+                        <img src="assets/images/cin_bday_cake.png" alt="Cinnamoroll celebrating birthday cake" draggable="false">
+                    </div>
+
                     <div id="cake" class="cake">
 
-                        <!-- Centerpiece Golden Candle sitting at the very top -->
-                        <button id="candle" class="candle" type="button" aria-label="Blow out the birthday candle">
+                        <!-- Centerpiece Golden Interactive Candle -->
+                        <button id="candle" class="candle" data-cake-part="candle" type="button" aria-label="Blow out the birthday candle">
                             <div class="candle-stripe"></div>
                             <div class="wick"></div>
                             <span id="flame" class="flame">
@@ -464,7 +523,13 @@
                         </button>
                         
                         <!-- Tier 3: Top Tier -->
-                        <div class="cake-layer layer-top">
+                        <div class="cake-layer layer-top" data-cake-part="layer-top">
+                            <!-- Cinnamoroll Topper Silhouette & Ears -->
+                            <div class="cin-topper" aria-hidden="true">
+                                <span class="cin-topper-ear cin-ear-l"></span>
+                                <span class="cin-topper-face">☁️</span>
+                                <span class="cin-topper-ear cin-ear-r"></span>
+                            </div>
                             <div class="cake-decorations">
                                 <span class="berry b1">🍓</span>
                                 <span class="berry b2">🌸</span>
@@ -476,10 +541,19 @@
                                 <span class="drip d2"></span>
                                 <span class="drip d3"></span>
                             </div>
+                            <!-- Pixel Sparkles on Top Tier -->
+                            <div class="px-sparkles" aria-hidden="true">
+                                <span class="px-dot px-d1"></span>
+                                <span class="px-dot px-d2"></span>
+                                <span class="px-dot px-d3"></span>
+                            </div>
                         </div>
+
+                        <!-- Cream Layer (Top - Middle) -->
+                        <div class="cream-layer cream-tm" data-cake-part="cream-tm"></div>
                         
                         <!-- Tier 2: Middle Tier -->
-                        <div class="cake-layer layer-middle">
+                        <div class="cake-layer layer-middle" data-cake-part="layer-middle">
                             <div class="frosting-drips">
                                 <span class="drip d1"></span>
                                 <span class="drip d2"></span>
@@ -492,10 +566,19 @@
                                 <span class="sp s2">💕</span>
                                 <span class="sp s3">✨</span>
                             </div>
+                            <!-- Middle Layer Piping Swirls -->
+                            <div class="piping-row piping-middle" aria-hidden="true">
+                                <span class="pip"></span><span class="pip"></span><span class="pip"></span>
+                                <span class="pip"></span><span class="pip"></span><span class="pip"></span>
+                                <span class="pip"></span>
+                            </div>
                         </div>
+
+                        <!-- Cream Layer (Middle - Bottom) -->
+                        <div class="cream-layer cream-mb" data-cake-part="cream-mb"></div>
                         
                         <!-- Tier 1: Bottom Tier -->
-                        <div class="cake-layer layer-bottom">
+                        <div class="cake-layer layer-bottom" data-cake-part="layer-bottom">
                             <div class="frosting-drips">
                                 <span class="drip d1"></span>
                                 <span class="drip d2"></span>
@@ -506,14 +589,30 @@
                             <div class="cake-pearls">
                                 <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
                             </div>
+                            <!-- Bottom Layer Piping Swirls -->
+                            <div class="piping-row piping-bottom" aria-hidden="true">
+                                <span class="pip"></span><span class="pip"></span><span class="pip"></span>
+                                <span class="pip"></span><span class="pip"></span><span class="pip"></span>
+                                <span class="pip"></span><span class="pip"></span><span class="pip"></span>
+                            </div>
                         </div>
 
                         <!-- Ornate Cake Pedestal Stand -->
-                        <div class="cake-stand">
+                        <div class="cake-stand" data-cake-part="stand">
                             <div class="stand-plate"></div>
                             <div class="stand-rim"></div>
                             <div class="stand-pillar"></div>
                             <div class="stand-base"></div>
+                        </div>
+
+                        <!-- Assembly Sparkle Burst Ring -->
+                        <div class="cake-assembly-burst" id="cakeAssemblyBurst" aria-hidden="true">
+                            <span class="ab ab1">✨</span>
+                            <span class="ab ab2">⭐</span>
+                            <span class="ab ab3">💖</span>
+                            <span class="ab ab4">🌸</span>
+                            <span class="ab ab5">✨</span>
+                            <span class="ab ab6">💕</span>
                         </div>
 
                     </div>
